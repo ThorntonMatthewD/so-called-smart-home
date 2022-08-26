@@ -5,7 +5,6 @@ name = "pypi"
 
 [packages]
 black = "*"
-prometheus-client = "*"
 
 [dev-packages]
 
