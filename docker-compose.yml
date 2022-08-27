@@ -4,6 +4,7 @@ services:
     image: prom/prometheus:latest
     volumes:
       - /data/grafana-storage/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus-storage:/prometheus
     ports:
       - 9090:9090
     extra_hosts:
@@ -13,7 +14,12 @@ services:
     volumes:
       - /data/grafana-storage/grafana/grafana.ini:/etc/grafana/grafana.ini
       - /data/grafana-storage/grafana/datasource.yml:/etc/grafana/provisioning/datasources/datasource.yaml
+      - grafana-storage:/var/lib/grafana
     ports:
       - 3000:3000
     links:
       - prometheus
+
+volumes:
+  grafana-storage:
+  prometheus-storage:
