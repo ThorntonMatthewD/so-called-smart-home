@@ -20,4 +20,3 @@ for line in iter(tty.readline, None):
             prom_client.update_gauges(data)
         except json.decoder.JSONDecodeError as e:
             logger.log_error(e, f"Could not read: {line}")
-
