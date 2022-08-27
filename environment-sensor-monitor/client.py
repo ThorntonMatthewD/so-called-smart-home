@@ -16,6 +16,9 @@ class Client:
         self.temp_gauge = Gauge(
             "current_temperature", "Current temperature (degrees celsius)"
         )
+        self.temp_f_gauge = Gauge(
+            "current_temperature_f", "Current temperature (degrees fahrenheit)"
+        )
         self.gas_gauge = Gauge(
             "current_gas_resistance", "Current gas resistance (ohms)"
         )
@@ -30,6 +33,7 @@ class Client:
     def update_gauges(self, sensor_data: dict) -> None:
         """Updates values of the gauges from sensor reading data"""
         self.temp_gauge.set(sensor_data.get("temp", FALLBACK_VALUE))
+        self.temp_f_gauge.set(sensor_data.get("temp_f", FALLBACK_VALUE))
         self.gas_gauge.set(sensor_data.get("gas", FALLBACK_VALUE))
         self.humidity_gauge.set(sensor_data.get("rel_humidity", FALLBACK_VALUE))
         self.altitude_gauge.set(sensor_data.get("altitude", FALLBACK_VALUE))

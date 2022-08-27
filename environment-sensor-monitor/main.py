@@ -16,6 +16,12 @@ for line in iter(tty.readline, None):
     if len(line) > 1:
         try:
             data = json.loads(util.clean_tty_line(line))
+            
+            temp = data.get("temp")
+
+            if temp:
+                data.update(temp_f=util.celcius_to_fahrenheit(temp))
+
             prom_client.update_gauges(data)
         except json.decoder.JSONDecodeError as e:
             logger.log_error(e, f"Could not read: {line}")
