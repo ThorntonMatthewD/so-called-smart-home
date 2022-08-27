@@ -22,6 +22,8 @@ for line in iter(tty.readline, None):
             if temp:
                 data.update(temp_f=util.celcius_to_fahrenheit(temp))
 
+            print(data)
+
             prom_client.update_gauges(data)
         except json.decoder.JSONDecodeError as e:
             logger.log_error(e, f"Could not read: {line}")
