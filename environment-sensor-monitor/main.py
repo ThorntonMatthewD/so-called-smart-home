@@ -16,7 +16,6 @@ for line in iter(tty.readline, None):
     if len(line) > 1:
         try:
             data = json.loads(util.clean_tty_line(line))
-            print(data)
             prom_client.update_gauges(data)
         except json.decoder.JSONDecodeError as e:
             logger.log_error(e, f"Could not read: {line}")
