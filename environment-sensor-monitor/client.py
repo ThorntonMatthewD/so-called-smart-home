@@ -20,11 +20,11 @@ class Client:
             "current_gas_resistance", "Current gas resistance (ohms)"
         )
         self.humidity_gauge = Gauge(
-            "current_relative_humidity", "Current relative humidity ()"
+            "current_relative_humidity", "Current relative humidity (%)"
         )
         self.altitude_gauge = Gauge("current_altitude", "Current altitude (meters)")
         self.pressure_gauge = Gauge(
-            "current_pressure", "Current barometric pressure ()"
+            "current_pressure", "Current barometric pressure (hPa)"
         )
 
     def update_gauges(self, sensor_data: dict) -> None:
