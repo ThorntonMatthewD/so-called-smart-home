@@ -1,0 +1,17 @@
+[
+  {
+  "name": "Pi-hole",
+  "description": "A local DNS sinkhole for ads and trackers",
+  "url": "http://pihole.thornton/admin"
+  },
+  {
+    "name": "Grafana",
+    "description": "The Everything Dashboard",
+    "url": "http://grafana.thornton/"
+  },
+  {
+    "name": "Prometheus",
+    "description": "Metrics aggregator",
+    "url": "http://prometheus.thornton/"
+    }
+]
