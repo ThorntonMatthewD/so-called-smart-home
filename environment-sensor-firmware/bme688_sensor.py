@@ -46,7 +46,7 @@ def set_gas_burn_in_value():
 
 def calculate_air_quality(gas_baseline, gas, humidity):
     """
-    Calculates Air Quality Index (AQI) given current sensor data.
+    Calculates Air Quality Index (IAQ) given current sensor data.
     """
     gas_offset = gas_baseline - gas
     hum_offset = humidity - HUMIDITY_BASELINE
