@@ -29,6 +29,7 @@ class Client:
         self.pressure_gauge = Gauge(
             "current_pressure", "Current barometric pressure (hPa)"
         )
+        self.air_quality_index = Gauge("current_air_quality_index", "Current air quality index")
 
     def update_gauges(self, sensor_data: dict) -> None:
         """Updates values of the gauges from sensor reading data"""
@@ -38,3 +39,4 @@ class Client:
         self.humidity_gauge.set(sensor_data.get("rel_humidity", FALLBACK_VALUE))
         self.altitude_gauge.set(sensor_data.get("altitude", FALLBACK_VALUE))
         self.pressure_gauge.set(sensor_data.get("pressure", FALLBACK_VALUE))
+        self.air_quality_index.set(sensor_data.get("air_quality", FALLBACK_VALUE))
