@@ -22,7 +22,6 @@ const Home: NextPage = () => {
 
         <div className={styles.grid}>
           {services.map((service: Service) => {
-            console.log(service)
             return <GridItem key={service.url} service={service} />
           })
         } 
