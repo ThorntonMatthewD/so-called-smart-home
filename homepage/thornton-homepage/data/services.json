@@ -1,17 +1,20 @@
 [
   {
-  "name": "Pi-hole",
-  "description": "A local DNS sinkhole for ads and trackers",
-  "url": "http://pihole.thornton/admin"
+    "name": "Pi-hole",
+    "description": "A local DNS sinkhole for ads and trackers",
+    "url": "http://pihole.thornton/admin",
+    "img_src": "/services/pi-hole.svg"
   },
   {
     "name": "Grafana",
     "description": "The Everything Dashboard",
-    "url": "http://grafana.thornton/"
+    "url": "http://grafana.thornton/",
+    "img_src": "/services/grafana.svg"
   },
   {
     "name": "Prometheus",
     "description": "Metrics aggregator",
-    "url": "http://prometheus.thornton/"
+    "url": "http://prometheus.thornton/",
+    "img_src": "/services/prometheus.svg"
     }
 ]
