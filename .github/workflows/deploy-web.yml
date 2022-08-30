@@ -18,5 +18,6 @@ jobs:
       - name: Deploy web server container
         run: |
           docker stop weeb-server || true
+          cd ./homepage/thornton-homepage
           docker build -t weeb:latest .
           docker run -d -p 3500:3000 --name weeb-server weeb:latest
