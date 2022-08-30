@@ -1,5 +1,4 @@
-# Base on offical Node.js Alpine image
-FROM node:alpine
+FROM node:buster-slim
 
 # Set working directory
 WORKDIR /usr/app
