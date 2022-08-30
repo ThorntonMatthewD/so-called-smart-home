@@ -2,7 +2,7 @@ import type { NextPage } from 'next';
 import Head from 'next/head';
 import styles from '../styles/Home.module.css';
 
-import services from '../data/services';
+import services from '../data/services.json';
 import GridItem from '../components/grid-item';
 import { Service } from '../interfaces/home.interfaces';
 
