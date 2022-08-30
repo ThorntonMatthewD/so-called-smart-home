@@ -17,6 +17,6 @@ jobs:
 
       - name: Deploy web server container
         run: |
-          docker stop weeb-server
+          docker stop weeb-server || true
           docker build -t weeb:latest
           docker run -d -p 3500:3000 --name weeb-server weeb:latest
