@@ -47,6 +47,7 @@
   border-style: solid;
   border-image: url(../public/menu_border.png) 15 stretch;
   background-color: rgba(17,17,17,0.9);
+  padding: 10px;
 }
 
 .title,
@@ -87,6 +88,7 @@
   border-radius: 10px;
   transition: color 0.15s ease, border-color 0.15s ease;
   max-width: 300px;
+  width: 100%;
   border-width: 10px;
   border-style: solid;
   border-image: url(../public/menu_border.png) 15 stretch;
