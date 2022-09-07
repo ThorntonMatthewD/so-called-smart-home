@@ -16,5 +16,11 @@
     "description": "Metrics aggregator",
     "url": "http://prometheus.thornton/",
     "img_src": "/services/prometheus.svg"
-    }
+    },
+    {
+      "name": "Prometheus Push Gateway",
+      "description": "Push it up!",
+      "url": "http://pushgateway.thornton/",
+      "img_src": "/services/prometheus.svg"
+      }
 ]
