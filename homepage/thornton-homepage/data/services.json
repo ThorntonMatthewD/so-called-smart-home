@@ -18,7 +18,7 @@
     "img_src": "/services/prometheus.svg"
     },
     {
-      "name": "Prometheus Push Gateway",
+      "name": "Prometheus Pushgateway",
       "description": "Push it up!",
       "url": "http://pushgateway.thornton/",
       "img_src": "/services/prometheus.svg"
