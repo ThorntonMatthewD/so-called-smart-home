@@ -30,6 +30,16 @@ services:
     links:
       - prometheus
 
+  sensor-gateway:
+    build:
+      context: ./sensor-gateway
+      dockerfile: Dockerfile
+    image: sensor-gateway:latest
+    ports:
+      - "9500:9500"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
 volumes:
   grafana-storage:
   prometheus-storage:
