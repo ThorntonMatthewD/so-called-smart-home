@@ -1,4 +1,5 @@
 """Exposes metrics to Prometheus"""
+from typing import List
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
 from prometheus_client import (
@@ -21,36 +22,43 @@ class Metrics(BaseModel):
     metric_name: str
     description: str
     type: str
-    data: dict
+    data: float
 
 
 @router.post("/receive_metrics", tags=["Metrics"])
-async def receive_metrics(metrics: Metrics):
+async def receive_metrics(metrics: List[Metrics]):
     """Receiver of metrics from sensors"""
 
-    stored_metric = metrics_cache.get(metrics.metric_name)
+    for metric in metrics:
+        stored_metric = metrics_cache.get(metric.metric_name)
 
-    if stored_metric:
-        stored_metric.set(metrics.data)
-    else:
-        new_metric = None
+        if stored_metric:
+            stored_metric.set(metric.data)
+        else:
+            new_metric = None
 
-        match metrics.type:
-            case "gauge":
-                new_metric = Gauge(metrics.metric_name, metrics.description)
-            case "summary":
-                new_metric = Summary(metrics.metric_name, metrics.description)
-            case "histogram":
-                new_metric = Histogram(
-                    metrics.metric_name, metrics.description
-                )
-            case "info":
-                new_metric = Info(metrics.metric_name, metrics.description)
-            case "enum":
-                new_metric = Enum(metrics.metric_name, metrics.description)
-            case _:
-                raise HTTPException(400, f"{metrics.type} is not a valid type")
+            match metric.type:
+                case "gauge":
+                    new_metric = Gauge(
+                        metric.metric_name, metric.description
+                    )
+                case "summary":
+                    new_metric = Summary(
+                        metric.metric_name, metric.description
+                    )
+                case "histogram":
+                    new_metric = Histogram(
+                        metric.metric_name, metric.description
+                    )
+                case "info":
+                    new_metric = Info(metric.metric_name, metric.description)
+                case "enum":
+                    new_metric = Enum(metric.metric_name, metric.description)
+                case _:
+                    raise HTTPException(
+                        400, f"{metric.type} is not a valid type"
+                    )
 
-        metrics_cache[metrics.metric_name] = new_metric
+            metrics_cache[metric.metric_name] = new_metric
 
     return {"detail": "Got your metrics! Thanks!"}
