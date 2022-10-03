@@ -251,6 +251,12 @@ dependencies = [
 ]
 
 [[package]]
+name = "dtoa"
+version = "1.0.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "c6053ff46b5639ceb91756a85a4c8914668393a03170efd79c8884a529d80656"
+
+[[package]]
 name = "either"
 version = "1.8.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -795,6 +801,29 @@ dependencies = [
 ]
 
 [[package]]
+name = "prometheus-client"
+version = "0.18.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "3c473049631c233933d6286c88bbb7be30e62ec534cf99a9ae0079211f7fa603"
+dependencies = [
+ "dtoa",
+ "itoa",
+ "parking_lot",
+ "prometheus-client-derive-text-encode",
+]
+
+[[package]]
+name = "prometheus-client-derive-text-encode"
+version = "0.3.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "66a455fbcb954c1a7decf3c586e860fd7889cddf4b8e164be736dbac95a953cd"
+dependencies = [
+ "proc-macro2",
+ "quote",
+ "syn",
+]
+
+[[package]]
 name = "quote"
 version = "1.0.21"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -986,6 +1015,7 @@ checksum = "97477e48b4cf8603ad5f7aaf897467cf42ab4218a38ef76fb14c2d6773a6d6a8"
 name = "rusty-sensor-gateway"
 version = "0.1.0"
 dependencies = [
+ "prometheus-client",
  "rocket",
 ]
 
