@@ -1023,6 +1023,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "rocket-cache-response"
+version = "0.6.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "d1c61bb828cb5ed810b76c1f3a61c2ca9fc21df8b150edbde564e823bb63d1c1"
+dependencies = [
+ "rocket",
+]
+
+[[package]]
 name = "rocket-etag-if-none-match"
 version = "0.4.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1099,8 +1108,14 @@ checksum = "97477e48b4cf8603ad5f7aaf897467cf42ab4218a38ef76fb14c2d6773a6d6a8"
 name = "rusty-sensor-gateway"
 version = "0.1.0"
 dependencies = [
+ "manifest-dir-macros",
+ "mime",
+ "mime_guess",
  "prometheus-client",
+ "rc-u8-reader",
  "rocket",
+ "rocket-cache-response",
+ "rocket-etag-if-none-match",
  "rocket-include-static-resources",
 ]
 
