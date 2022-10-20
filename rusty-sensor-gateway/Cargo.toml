@@ -19,5 +19,8 @@ rocket-include-static-resources = "0.10.2"
 
 prometheus-client = "0.18.0"
 
+[dev-dependencies]
+rand = "0.8"
+
 [features]
 cache = ["rocket-cache-response"]

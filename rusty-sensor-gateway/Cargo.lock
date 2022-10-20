@@ -1112,6 +1112,7 @@ dependencies = [
  "mime",
  "mime_guess",
  "prometheus-client",
+ "rand",
  "rc-u8-reader",
  "rocket",
  "rocket-cache-response",
