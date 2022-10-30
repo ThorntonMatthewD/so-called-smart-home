@@ -34,6 +34,7 @@ services:
     build:
       context: ./sensor-gateway
       dockerfile: Dockerfile
+      network: host
     image: sensor-gateway:latest
     ports:
       - "9500:9500"
