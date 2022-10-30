@@ -1,1 +1,3 @@
 log/environment-sensor-monitor.log
+rusty-sensor-gateway/target
+rusty-sensor-gateway/target/*
