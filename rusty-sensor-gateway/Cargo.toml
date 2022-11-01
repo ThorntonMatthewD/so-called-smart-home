@@ -3,24 +3,10 @@ name = "rusty-sensor-gateway"
 version = "0.1.0"
 edition = "2021"
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
-
 [dependencies]
-rocket = "0.5.0-rc.2"
-
-mime = "0.3.13"
-mime_guess = " 2"
-rc-u8-reader = { version = "2.0.14", features = ["tokio"] }
-manifest-dir-macros = { version = "0.1.11", features = ["tuple", "mime_guess"] }
-
-rocket-etag-if-none-match = "0.4.0"
-rocket-cache-response = { version = "0.6", optional = true }
-rocket-include-static-resources = "0.10.2"
-
-prometheus-client = "0.18.0"
-
-[dev-dependencies]
-rand = "0.8"
-
-[features]
-cache = ["rocket-cache-response"]
+axum = "^0.5.17"
+prometheus-client = "0.18.1"
+serde = { version = "^1", features = ["derive"] }
+serde_json = "^1"
+tokio = { version = "^1.0", features = ["full"] }
+tower-http = { version = "^0.3.4", features = ["cors"] }
