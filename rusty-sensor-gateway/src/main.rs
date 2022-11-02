@@ -4,15 +4,13 @@ use axum::{
     http::{StatusCode},
     routing::get,
     routing::post,
-    routing::get_service,
     Router
 };
 use axum_prometheus::PrometheusMetricLayer;
 use serde::Deserialize;
 use tower_http::{
     cors::Any,
-    cors::CorsLayer,
-    services::ServeFile
+    cors::CorsLayer
 };
 
 #[derive(Deserialize, Debug)]
@@ -34,10 +32,7 @@ async fn main() {
         .route("/", get(root))
         .route("/receive_metrics", post(receive_metrics))
         .route("/metrics", get(|| async move { metric_handle.render() }))
-        .route("/favicon.ico",
-            get_service(ServeFile::new("static/images/favicon.ico"))
-                .handle_error(internal_server_error)
-        )
+        .route("/favicon.ico", get(favicon))
         .layer(prometheus_layer)
         .layer(cors);
 
@@ -75,6 +70,10 @@ async fn receive_metrics(payload: String) -> String {
     println!("stuff: {:#?}", metrics);
 
     "Your metrics have been received. Thanks!".to_string()
+}
+
+async fn favicon() -> &'static [u8] {
+    include_bytes!("static/images/favicon.ico")
 }
 
 pub async fn internal_server_error(error: std::io::Error) -> (StatusCode, String) {
