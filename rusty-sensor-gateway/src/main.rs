@@ -77,10 +77,3 @@ async fn receive_metrics(payload: String) -> String {
 async fn favicon() -> &'static [u8] {
     include_bytes!("static/images/favicon.ico")
 }
-
-pub async fn internal_server_error(error: std::io::Error) -> (StatusCode, String) {
-    (
-        StatusCode::INTERNAL_SERVER_ERROR,
-        format!("SOMETHING WENT WRONG!!!!!: {}", error),
-    )
-}
