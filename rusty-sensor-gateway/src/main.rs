@@ -52,7 +52,7 @@ async fn root() -> &'static str {
     "Welcome to the Sensor Gateway - Now a bit rustier."
 }
 
-pub async fn receive_metrics(payload: String) -> String {
+async fn receive_metrics(payload: String) -> String {
     let metrics: Vec<Metric> = match serde_json::from_str(payload.as_str()) {
         Ok(result) => result,
         Err(error) => return format!("ERROR: {}", error)
