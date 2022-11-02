@@ -1,15 +1,19 @@
-use std::net::SocketAddr;
+use std::{net::SocketAddr};
 
 use axum::{
-    extract::Json,
-    handler::Handler,
+    http::{StatusCode},
     routing::get,
     routing::post,
+    routing::get_service,
     Router
 };
 use axum_prometheus::PrometheusMetricLayer;
 use serde::Deserialize;
-use tower_http::cors::{Any, CorsLayer};
+use tower_http::{
+    cors::Any,
+    cors::CorsLayer,
+    services::ServeFile
+};
 
 #[derive(Deserialize, Debug)]
 pub struct Metric {
@@ -30,6 +34,10 @@ async fn main() {
         .route("/", get(root))
         .route("/receive_metrics", post(receive_metrics))
         .route("/metrics", get(|| async move { metric_handle.render() }))
+        .route("/favicon.ico",
+            get_service(ServeFile::new("static/images/favicon.ico"))
+                .handle_error(internal_server_error)
+        )
         .layer(prometheus_layer)
         .layer(cors);
 
@@ -67,4 +75,11 @@ async fn receive_metrics(payload: String) -> String {
     println!("stuff: {:#?}", metrics);
 
     "Your metrics have been received. Thanks!".to_string()
+}
+
+pub async fn internal_server_error(error: std::io::Error) -> (StatusCode, String) {
+    (
+        StatusCode::INTERNAL_SERVER_ERROR,
+        format!("SOMETHING WENT WRONG!!!!!: {}", error),
+    )
 }
