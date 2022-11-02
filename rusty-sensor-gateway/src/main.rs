@@ -1,3 +1,5 @@
+use std::net::SocketAddr;
+
 use axum::{
     extract::Json,
     handler::Handler,
@@ -5,7 +7,7 @@ use axum::{
     routing::post,
     Router
 };
-use std::net::SocketAddr;
+use axum_prometheus::PrometheusMetricLayer;
 use serde::Deserialize;
 use tower_http::cors::{Any, CorsLayer};
 
@@ -22,13 +24,17 @@ async fn main() {
     // Let anything through since this only runs locally
     let cors = CorsLayer::new().allow_origin(Any);
 
+    let (prometheus_layer, metric_handle) = PrometheusMetricLayer::pair();
+
     let app = Router::new()
         .route("/", get(root))
         .route("/receive_metrics", post(receive_metrics))
+        .route("/metrics", get(|| async move { metric_handle.render() }))
+        .layer(prometheus_layer)
         .layer(cors);
 
     let addr = SocketAddr::from(([127, 0, 0, 1], 8000));
-    println!("listening on {}", addr);
+    println!("listening on http://{}", addr);
 
     axum::Server::bind(&addr)
         .serve(app.into_make_service())
