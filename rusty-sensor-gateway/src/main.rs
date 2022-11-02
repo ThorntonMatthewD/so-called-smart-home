@@ -72,6 +72,8 @@ async fn receive_metrics(payload: String) -> String {
     "Your metrics have been received. Thanks!".to_string()
 }
 
+// Linking to the docs after all of that struggle lol
+// https://doc.rust-lang.org/std/macro.include_bytes.html
 async fn favicon() -> &'static [u8] {
     include_bytes!("static/images/favicon.ico")
 }
