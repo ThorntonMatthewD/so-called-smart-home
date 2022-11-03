@@ -6,11 +6,13 @@ use axum::{
     Router
 };
 use axum_prometheus::PrometheusMetricLayer;
+use prometheus_client::registry::Registry;
 use serde::Deserialize;
 use tower_http::{
     cors::Any,
     cors::CorsLayer
 };
+
 
 #[derive(Deserialize, Debug)]
 pub struct Metric {
@@ -20,10 +22,13 @@ pub struct Metric {
   data: f64
 }
 
+
 #[tokio::main]
 async fn main() {
     // Let anything through since this only runs locally
     let cors = CorsLayer::new().allow_origin(Any);
+
+    let mut registry = <Registry>::default();
 
     let (prometheus_layer, metric_handle) = PrometheusMetricLayer::pair();
 
