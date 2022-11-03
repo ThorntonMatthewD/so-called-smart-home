@@ -50,6 +50,7 @@ async fn main() {
         .unwrap();
 }
 
+
 async fn shutdown_signal() {
     tokio::signal::ctrl_c()
         .await
@@ -57,13 +58,16 @@ async fn shutdown_signal() {
     println!("\nShutdown signal received - Server is shutting down.");
 }
 
+
 //
 // Routes
 //
 
+
 async fn root() -> &'static str {
     "Welcome to the Sensor Gateway - Now a bit rustier."
 }
+
 
 async fn receive_metrics(payload: String) -> String {
     let metrics: Vec<Metric> = match serde_json::from_str(payload.as_str()) {
@@ -75,6 +79,7 @@ async fn receive_metrics(payload: String) -> String {
 
     "Your metrics have been received. Thanks!".to_string()
 }
+
 
 // Linking to the docs after all of that struggle lol
 // https://doc.rust-lang.org/std/macro.include_bytes.html
