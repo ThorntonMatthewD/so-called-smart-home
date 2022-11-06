@@ -1,9 +1,10 @@
 use std::net::SocketAddr;
 
 use axum::{
+    http::StatusCode,
     routing::get,
     routing::post,
-    Router
+    Router, response::IntoResponse
 };
 use axum_prometheus::PrometheusMetricLayer;
 use prometheus_client::registry::Registry;
@@ -69,7 +70,7 @@ async fn root() -> &'static str {
 }
 
 
-async fn receive_metrics(payload: String) -> String {
+async fn receive_metrics(payload: String) -> impl IntoResponse {
     let metrics: Vec<Metric> = match serde_json::from_str(payload.as_str()) {
         Ok(result) => result,
         Err(error) => return format!("ERROR: {}", error)
@@ -77,7 +78,7 @@ async fn receive_metrics(payload: String) -> String {
 
     println!("stuff: {:#?}", metrics);
 
-    "Your metrics have been received. Thanks!".to_string()
+    (StatusCode::OK, "Your metrics have been received. Thanks!")
 }
 
 
