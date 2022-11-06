@@ -2,9 +2,10 @@ use std::net::SocketAddr;
 
 use axum::{
     http::StatusCode,
+    response::IntoResponse,
     routing::get,
     routing::post,
-    Router, response::IntoResponse
+    Router
 };
 use axum_prometheus::PrometheusMetricLayer;
 use prometheus_client::registry::Registry;
