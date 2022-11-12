@@ -6,7 +6,7 @@ on:
   push:
     branches: ['master']
     paths:
-      - 'homepage/thornton-homepage/**'
+      - 'homepage/**'
       - '.github/workflows/deploy-web.yml'
 
 jobs:
