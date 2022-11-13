@@ -2,10 +2,7 @@ version: "3.3"
 services:
   prometheus:
     image: prom/prometheus:latest
-    user: root
-    entrypoint: prometheus-entrypoint.sh
     volumes:
-      - ./entrypoint.sh:/entrypoint.sh
       - /data/grafana-storage/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
       - prometheus-storage:/prometheus
     ports:
